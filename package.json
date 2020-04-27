@@ -1,0 +1,26 @@
+{
+  "name": "ghost-exporter",
+  "version": "0.1.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "deploy": "rm ../eleventy-reverentgeek-blog/src/site/*.html && cp -R site/** ../eleventy-reverentgeek-blog/src/site"
+  },
+  "keywords": [],
+  "author": "David Neal <david@reverentgeek.com> (https://reverentgeek.com)",
+  "license": "MIT",
+  "dependencies": {
+    "@tryghost/content-api": "^1.4.1",
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "fs-extra": "^9.0.0",
+    "markdownlint": "^0.20.2",
+    "markdownlint-rule-helpers": "^0.9.0",
+    "turndown": "^6.0.0",
+    "turndown-plugin-gfm": "^1.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-reverentgeek": "^2.1.2"
+  }
+}
