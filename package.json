@@ -1,5 +1,5 @@
 {
-  "name": "ghost-exporter",
+  "name": "ghost-to-eleventy-exporter",
   "version": "0.1.0",
   "description": "",
   "main": "src/index.js",

@@ -12,7 +12,7 @@ const forceMarkdownSlugList = [
 	"presentations",
 	"respect-for-people"
 ];
-const downloadImages = false;
+const downloadImages = true;
 
 require( "dotenv" ).config();
 
