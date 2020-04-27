@@ -8,6 +8,20 @@
   },
   "keywords": [],
   "author": "David Neal <david@reverentgeek.com> (https://reverentgeek.com)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reverentgeek/ghost-to-eleventy-exporter.git"
+  },
+  "keywords": [
+    "eleventy",
+    "static",
+    "site",
+    "jamstack",
+    "reverentgeek",
+    "blog",
+    "ghost",
+    "node.js"
+  ],
   "license": "MIT",
   "dependencies": {
     "@tryghost/content-api": "^1.4.1",
