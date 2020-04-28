@@ -28,10 +28,30 @@ A utility for downloading content and images from a site running [Ghost](https:/
 
 ## Usage
 
-Run the utility from the command line using Node.js
+Run the utility from the command line using Node.js. Available command-line options:
+
+```bash
+Usage: node . [options]
+
+Options:
+  -o, --out <folder>        directory to write exported content
+                            (defaults to 'site' in the current folder)
+  --ghost-url <apiUrl>      Ghost site url
+  --ghost-api-key <apiKey>  Ghost API key
+  --site-url <siteUrl>      Destination site url, if different than Ghost site url
+  --skip-images             skip downloading images
+  --skip-pages              skip exporting pages
+  --skip-posts              skip exporting posts
+  --slugs [slugs]           comma-separated list of content slug to convert explicitly
+                            from html to markdown
+  --debug                   Write unprocessed original content to out folder as JSON
+  -h, --help                display help for command
+```
+
+If you run the utility without any command line arguments...
 
 ```bash
 node .
 ```
 
-You should now have a folder named `site` with all the content and images downloaded.
+...you should expect a new folder named `site` with all the content and images downloaded.

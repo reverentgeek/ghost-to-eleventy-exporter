@@ -27,7 +27,7 @@ const convertHtmlToMarkdown = html => {
 	if ( fixes.length > 0 ) {
 		md = lintHelper.applyFixes( md, fixes );
 	}
-	return md;
+	return md.trim();
 };
 
 const convertGhostHtmlMarkdownBlockToMarkdown = html => {
@@ -37,11 +37,22 @@ const convertGhostHtmlMarkdownBlockToMarkdown = html => {
 		const md = convertHtmlToMarkdown( block );
 		html = html.replace( block, "\n\n" + md + "\n\n" );
 	}
-	return html;
+	return html.trim();
+};
+
+const convertStartingImageToFeaturedImage = post => {
+	const mdImgRe = /^!\[[^\]]*?\]\(([^)]*)\)/;
+	if ( post.feature_image || !post.filename.endsWith( ".md" ) || !post.html.startsWith( "![" ) ) return;
+	const match = post.html.match( mdImgRe );
+	if ( match.length > 0 ) {
+		post.feature_image = match[1];
+		post.html = post.html.replace( match[0], "" ).trim();
+	}
 };
 
 module.exports = {
 	containsGhostHtmlMarkdownBlock,
 	convertGhostHtmlMarkdownBlockToMarkdown,
-	convertHtmlToMarkdown
+	convertHtmlToMarkdown,
+	convertStartingImageToFeaturedImage
 };

@@ -4,13 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "deploy": "rm ../eleventy-reverentgeek-blog/src/site/*.html && cp -R site/** ../eleventy-reverentgeek-blog/src/site"
-  },
-  "keywords": [],
-  "author": "David Neal <david@reverentgeek.com> (https://reverentgeek.com)",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/reverentgeek/ghost-to-eleventy-exporter.git"
+    "deploy": "cp -R site/** ../eleventy-reverentgeek-blog/src/site"
   },
   "keywords": [
     "eleventy",
@@ -22,14 +16,22 @@
     "ghost",
     "node.js"
   ],
+  "author": "David Neal <david@reverentgeek.com> (https://reverentgeek.com)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reverentgeek/ghost-to-eleventy-exporter.git"
+  },
   "license": "MIT",
   "dependencies": {
     "@tryghost/content-api": "^1.4.1",
     "axios": "^0.19.2",
+    "commander": "^5.1.0",
     "dotenv": "^8.2.0",
+    "excerpt-html": "^1.2.1",
     "fs-extra": "^9.0.0",
     "markdownlint": "^0.20.2",
     "markdownlint-rule-helpers": "^0.9.0",
+    "marked": "^1.0.0",
     "turndown": "^6.0.0",
     "turndown-plugin-gfm": "^1.0.2"
   },
