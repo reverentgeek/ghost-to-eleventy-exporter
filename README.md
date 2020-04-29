@@ -44,6 +44,7 @@ Options:
   --skip-posts              skip exporting posts
   --slugs [slugs]           comma-separated list of content slug to convert explicitly
                             from html to markdown
+  --filter [slugs]          comma-separated list of content slugs to skip conversion
   --debug                   Write unprocessed original content to out folder as JSON
   -h, --help                display help for command
 ```

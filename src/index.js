@@ -9,6 +9,18 @@ const slugs = ( value ) => {
 	return value.split( "," );
 };
 
+const envSkipSlugs = ( value ) => {
+	const slugs = process.env.FILTER_SLUGS;
+	if ( !slugs ) return [];
+	return slugs.split( "," );
+};
+
+const envSlugs = () => {
+	const slugs = process.env.MD_SLUGS;
+	if ( !slugs ) return [];
+	return slugs.split( "," );
+};
+
 program
 	.option( "--debug", "Write unprocessed original content to out folder" )
 	.option( "--ghost-url <apiUrl>", "Ghost site url" )
@@ -18,7 +30,8 @@ program
 	.option( "--skip-images", "skip downloading images" )
 	.option( "--skip-pages", "skip exporting pages" )
 	.option( "--skip-posts", "skip exporting posts" )
-	.option( "--slugs [slugs]", "comma-separated list of content slug to convert explicitly from html to markdown", slugs );
+	.option( "--slugs [slugs]", "comma-separated list of content slug to convert explicitly from html to markdown", slugs )
+	.option( "--filter [slugs]", "comma-separated list of content slugs to skip conversion", slugs );
 
 program.parse( process.argv );
 
@@ -31,7 +44,8 @@ const options = {
 	skipImages: !!program.skipImages,
 	skipPosts: !!program.skipPosts,
 	skipPages: !!program.skipPages,
-	slugs: program.slugs || []
+	slugs: program.slugs || envSlugs(),
+	skipSlugs: program.filter || envSkipSlugs()
 };
 
 if ( options.debug ) {

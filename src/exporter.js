@@ -9,7 +9,7 @@ const excerptHtml = require( "excerpt-html" );
 const marked = require( "marked" );
 const utils = require( "./utils" );
 
-module.exports = ( { debug, out, skipImages, skipPages, skipPosts, slugs, ghostUrl, ghostApiKey, siteUrl } ) => {
+module.exports = ( { debug, out, skipImages, skipPages, skipPosts, slugs, skipSlugs, ghostUrl, ghostApiKey, siteUrl } ) => {
 
 	const workingDir = out ? path.resolve( out ) : path.resolve( __dirname, "..", "site" );
 
@@ -143,6 +143,7 @@ module.exports = ( { debug, out, skipImages, skipPages, skipPosts, slugs, ghostU
 		const excerpt = excerptHtml( useMarkdown ? marked( content.html ) : content.html ).replace( /"/g, "\\\"" );
 
 		const data = `---
+id: ${ content.id }
 title: "${ content.title }"
 feature_image: ${ content.feature_image ? content.feature_image : "" }
 description: "${ excerpt }"
@@ -179,7 +180,9 @@ ${ content.html }
 
 				console.log( "exporting pages..." );
 				for( const page of pages ){
-					await exportContent( page, "page" );
+					if ( !skipSlugs.includes( page.slug ) ){
+						await exportContent( page, "page" );
+					}
 				}
 			}
 
@@ -189,7 +192,9 @@ ${ content.html }
 
 				console.log( "exporting posts..." );
 				for( const post of posts ){
-					await exportContent( post, "post" );
+					if ( !skipSlugs.includes( post.slug ) ){
+						await exportContent( post, "post" );
+					}
 				}
 			}
 		} catch ( err ) {
