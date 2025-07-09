@@ -25,13 +25,13 @@
 	"dependencies": {
 		"@tryghost/content-api": "^1.5.6",
 		"axios": "^1.8.3",
-		"commander": "^13.1.0",
-		"dotenv": "^16.0.0",
+		"commander": "^14.0.0",
+		"dotenv": "^17.1.0",
 		"excerpt-html": "^1.2.0",
 		"fs-extra": "^11.2.0",
-		"markdownlint": "^0.37.1",
-		"markdownlint-rule-helpers": "^0.28.0",
-		"marked": "^15.0.4",
+		"markdownlint": "^0.38.0",
+		"markdownlint-rule-helpers": "^0.29.0",
+		"marked": "^16.0.0",
 		"turndown": "^7.1.1",
 		"turndown-plugin-gfm": "^1.0.2"
 	},
