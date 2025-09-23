@@ -10,14 +10,14 @@ const turndown = new Turndown( {
 } );
 turndown.use( gfmPlugin.gfm );
 
-const containsGhostHtmlMarkdownBlock = html => {
+const containsGhostHtmlMarkdownBlock = ( html ) => {
 	return html.includes( "<!--kg-card-begin: markdown-->" );
 };
 
-const convertHtmlToMarkdown = html => {
+const convertHtmlToMarkdown = ( html ) => {
 	let md = turndown.turndown( html );
 	const fixResult = lint.sync( {
-		strings: { "md": md },
+		strings: { md: md },
 		config: {
 			"no-trailing-punctuation": false
 		},
@@ -30,17 +30,17 @@ const convertHtmlToMarkdown = html => {
 	return md.trim();
 };
 
-const convertGhostHtmlMarkdownBlockToMarkdown = html => {
+const convertGhostHtmlMarkdownBlockToMarkdown = ( html ) => {
 	const mdRegEx = /<!--kg-card-begin: markdown-->(.+?(?=<!--kg-card-end: markdown-->))<!--kg-card-end: markdown-->/gsm;
 	const mdBlocks = [ ...html.matchAll( mdRegEx ) ].map( b => b[0] );
-	for( const block of mdBlocks ) {
+	for ( const block of mdBlocks ) {
 		const md = convertHtmlToMarkdown( block );
 		html = html.replace( block, "\n\n" + md + "\n\n" );
 	}
 	return html.trim();
 };
 
-const convertStartingImageToFeaturedImage = post => {
+const convertStartingImageToFeaturedImage = ( post ) => {
 	const mdImgRe = /^!\[[^\]]*?\]\(([^)]*)\)/;
 	if ( post.feature_image || !post.filename.endsWith( ".md" ) || !post.html.startsWith( "![" ) ) return;
 	const match = post.html.match( mdImgRe );

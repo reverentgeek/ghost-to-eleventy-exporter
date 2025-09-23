@@ -8,7 +8,7 @@ const zeroPad = ( number ) => {
 	return number + "";
 };
 
-const formatDate = dt => {
+const formatDate = ( dt ) => {
 	return `${ dt.getFullYear() }-${ zeroPad( dt.getMonth() + 1 ) }-${ zeroPad( dt.getDate() ) }`;
 };
 

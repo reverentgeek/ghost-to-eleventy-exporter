@@ -9,7 +9,7 @@ const slugs = ( value ) => {
 	return value.split( "," );
 };
 
-const envSkipSlugs = ( value ) => {
+const envSkipSlugs = () => {
 	const slugs = process.env.FILTER_SLUGS;
 	if ( !slugs ) return [];
 	return slugs.split( "," );
@@ -51,6 +51,6 @@ const options = {
 if ( options.debug ) {
 	console.log( options );
 }
-exporter( options ).export().then( ()=>{
+exporter( options ).export().then( () => {
 	console.log( "finished" );
 } );

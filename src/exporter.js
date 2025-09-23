@@ -10,7 +10,6 @@ const marked = require( "marked" );
 const utils = require( "./utils" );
 
 module.exports = ( { debug, out, skipImages, skipPages, skipPosts, slugs, skipSlugs, ghostUrl, ghostApiKey, siteUrl } ) => {
-
 	const workingDir = out ? path.resolve( out ) : path.resolve( __dirname, "..", "site" );
 
 	// Init Ghost API
@@ -21,7 +20,7 @@ module.exports = ( { debug, out, skipImages, skipPages, skipPosts, slugs, skipSl
 	} );
 
 	// Strip Ghost domain from urls
-	const stripDomain = url => {
+	const stripDomain = ( url ) => {
 		return url.replace( ghostUrl, "" );
 	};
 
@@ -35,7 +34,7 @@ module.exports = ( { debug, out, skipImages, skipPages, skipPosts, slugs, skipSl
 	// Get all "static" pages
 	const getPages = async () => {
 		const pages = await api.pages.browse( { include: "authors", limit: "all" } );
-		for( const page of pages ){
+		for ( const page of pages ) {
 			page.url = stripDomain( page.url );
 			page.primary_author.url = stripDomain( page.primary_author.url );
 
@@ -50,7 +49,7 @@ module.exports = ( { debug, out, skipImages, skipPages, skipPosts, slugs, skipSl
 	// Get all blog posts
 	const getPosts = async () => {
 		const posts = await api.posts.browse( { include: "tags,authors", limit: "all" } );
-		for( const post of posts ){
+		for ( const post of posts ) {
 			post.url = stripDomain( post.url );
 			post.primary_author.url = stripDomain( post.primary_author.url );
 			post.tags.map( tag => ( tag.url = stripDomain( tag.url ) ) );
@@ -98,7 +97,7 @@ module.exports = ( { debug, out, skipImages, skipPages, skipPosts, slugs, skipSl
 
 	// Export content
 	// Note: description could be content.excerpt, but choosing not to use it
-	const exportContent = async ( content, layout  ) => {
+	const exportContent = async ( content, layout ) => {
 		const imgRegEx = /(http)?s?:?(\/\/[^"']*\.(?:png|jpg|jpeg|gif|png|svg))/gi;
 		const useMarkdown = md.containsGhostHtmlMarkdownBlock( content.html ) || slugs.includes( content.slug );
 		const ext = useMarkdown ? "md" : "html";
@@ -108,12 +107,12 @@ module.exports = ( { debug, out, skipImages, skipPages, skipPosts, slugs, skipSl
 		console.log( `exporting ${ filename }` );
 
 		if ( debug ) {
-			await fs.writeJson( path.resolve( workingDir,`${ content.slug }.json` ), content, { spaces: 2 } );
+			await fs.writeJson( path.resolve( workingDir, `${ content.slug }.json` ), content, { spaces: 2 } );
 		}
 
 		const images = Array.from( content.html.matchAll( imgRegEx ) ).map( m => m[0] );
 		if ( images.length > 0 ) {
-			for( const image of images ) {
+			for ( const image of images ) {
 				if ( image.startsWith( ghostUrl ) ) {
 					await downloadSiteImage( image );
 					content.html = content.html.replace( image, stripDomain( image ) );
@@ -160,7 +159,6 @@ ${ content.html }
 
 	const runExport = async ( ) => {
 		try {
-
 			console.log( "initializing content folder..." );
 			await initializeFolders();
 
@@ -179,8 +177,8 @@ ${ content.html }
 				const pages = await getPages();
 
 				console.log( "exporting pages..." );
-				for( const page of pages ){
-					if ( !skipSlugs.includes( page.slug ) ){
+				for ( const page of pages ) {
+					if ( !skipSlugs.includes( page.slug ) ) {
 						await exportContent( page, "page" );
 					}
 				}
@@ -191,8 +189,8 @@ ${ content.html }
 				const posts = await getPosts();
 
 				console.log( "exporting posts..." );
-				for( const post of posts ){
-					if ( !skipSlugs.includes( post.slug ) ){
+				for ( const post of posts ) {
+					if ( !skipSlugs.includes( post.slug ) ) {
 						await exportContent( post, "post" );
 					}
 				}
