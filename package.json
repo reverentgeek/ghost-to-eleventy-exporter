@@ -28,7 +28,7 @@
 		"axios": "^1.13.2",
 		"commander": "^14.0.2",
 		"dotenv": "^17.2.3",
-		"excerpt-html": "^1.2.0",
+		"excerpt-html": "^1.2.2",
 		"fs-extra": "^11.3.2",
 		"markdownlint": "^0.39.0",
 		"markdownlint-rule-helpers": "^0.30.0",
