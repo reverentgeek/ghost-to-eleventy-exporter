@@ -28,11 +28,11 @@
 		"axios": "^1.13.2",
 		"commander": "^14.0.2",
 		"dotenv": "^17.2.3",
-		"excerpt-html": "^1.2.2",
+		"excerpt-html": "^1.2.0",
 		"fs-extra": "^11.3.2",
 		"markdownlint": "^0.39.0",
 		"markdownlint-rule-helpers": "^0.30.0",
-		"marked": "^16.4.1",
+		"marked": "^17.0.0",
 		"turndown": "^7.2.2",
 		"turndown-plugin-gfm": "^1.0.2"
 	},
