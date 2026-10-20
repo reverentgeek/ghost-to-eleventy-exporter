@@ -1,5 +1,6 @@
 minimumReleaseAgeExclude:
   - '@tryghost/content-api@1.12.10'
-  - lodash.pick@4.4.1
 overrides:
+  katex@>=0.11.0 <0.18.2: ^0.18.2
+  excerpt-html>cheerio: ^1.2.0
   nth-check@<2.0.1: '>=2.0.1'
