@@ -24,21 +24,21 @@
 	},
 	"license": "MIT",
 	"dependencies": {
-		"@tryghost/content-api": "^1.12.12",
+		"@tryghost/content-api": "^1.12.13",
 		"axios": "^1.20.0",
 		"commander": "^15.0.0",
-		"dotenv": "^18.0.5",
+		"dotenv": "^18.0.8",
 		"excerpt-html": "^1.2.2",
 		"fs-extra": "^11.4.1",
-		"markdownlint": "^0.41.1",
+		"markdownlint": "^0.42.0",
 		"markdownlint-rule-helpers": "^0.31.0",
-		"marked": "^18.1.0",
+		"marked": "^18.1.1",
 		"turndown": "^7.2.4",
 		"turndown-plugin-gfm": "^1.0.2"
 	},
 	"devDependencies": {
-		"eslint": "^10.12.0",
-		"eslint-config-reverentgeek": "^7.1.23"
+		"eslint": "^10.13.0",
+		"eslint-config-reverentgeek": "^7.1.24"
 	},
 	"packageManager": "pnpm@11.10.0+sha512.0b7f8b98060031904c017e3a41eb187a16d40eeb829b95c4f8cb03681761fc4ab53dd219115b9b447f4dce1a05a214764461e7d3703392a9f32f9511ce8c86c8"
 }
